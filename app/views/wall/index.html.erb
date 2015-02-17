@@ -20,15 +20,15 @@
 					<% if comment.post_id == post.id %>
 						<div class="comments col-md-offset-1">
 							<h4><%= comment.user.first_name %> <%= comment.user.last_name %> - <%= comment.created_at.strftime("%B %d, %Y") %></h4>
-							<p><%= comment.message %></p>
+							<p><%= comment.content %></p>
 						</div>
 					<% end %>
 				<% end %>
 			<% end %>
 			<div class="add_message col-md-offset-1">
-				<%= simple_form_for @comment do |f| %>
+				<%= simple_form_for @comment, url: wall_comment_path do |f| %>
 				<%= f.input :post, as: :hidden, input_html: { value: post.id } %>
-					<%= f.input :message, required: false, label: false %>
+					<%= f.input :content, required: false, label: false %>
 					<%= f.button :submit, 'Add Comment', class: 'btn-success col-md-offset-10' %>
 				<% end %>
 			</div>

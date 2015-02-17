@@ -2,8 +2,7 @@ Rails.application.routes.draw do
 
   root 'wall#index'
   devise_for :users
-  get 'wall/index'
-  get 'wall/message'
+  post 'wall/comment' => 'wall#comment'
   post 'wall/post' => 'wall#post'
   
   # The priority is based upon order of creation: first created -> highest priority.

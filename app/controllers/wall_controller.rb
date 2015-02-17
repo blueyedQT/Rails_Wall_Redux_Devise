@@ -1,19 +1,28 @@
 class WallController < ApplicationController
   def index
   	@user = User.find(current_user)
-  	@posts = Post.all.reverse
   	@post = Post.new
+  	@comment = Comment.new
+  	@posts = Post.all.reverse
+  	@comments = Comment.all
   end
 
-  def message
+  def comment
+  	@comment = Comment.create(user:current_user, content:params[:comment][:content], post:Post.find(params[:comment][:post]))
+  	if @comment.save
+  		flash[:notice] = 'Your comment was successful!'
+  	else
+  		flash[:errors] = @comment.errors.full_messages
+  	end
+  	redirect_to root_path
   end
 
   def post
   	@post = Post.create(user:current_user, content:params[:post][:content])
   	if @post.save
-  		render text: 'Your post was successfull!'
+  		flash[:notice] = 'Your post was successfull!'
   	else
-  		render @post.errors.full_messages
+  		flash[:errors] = @post.errors.full_messages
   	end
   end
 end
