@@ -7,15 +7,15 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-	<div id="header">
-		<h1>Wall</h1>
+	<div class="row header">
+		<h1 class="col-md-8">The Wall</h1>
 		<% if user_signed_in? %>
-		<p>Welcome <%= current_user.first_name %>!</p>
+		<p class="col-md-2 pheader">Welcome <%= current_user.first_name %>!</p>
 		<%= link_to 'Sign Off', destroy_user_session_path, method: :delete %>
 		<% end %>
 	</div>
-
-	<%= yield %>
-
+	<div class="container">
+		<%= yield %>
+	</div>
 </body>
 </html>

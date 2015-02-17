@@ -5,21 +5,16 @@
 <% end %>
 
 <h1>Post a message</h1>
-<%= form_for(@post, url: wall_post_path do |f| %>
-  <div class="field">
-    <%= f.label :content %><br />
-    <%= f.text_field :content, autofocus: true %>
-  </div>
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
+<%= simple_form_for @post, url: wall_post_path do |f| %>
+	<%= f.input :content, required: false, label: false %>
+	<%= f.button :submit, 'Post a message', class: 'btn-primary col-md-offset-10' %>
 <% end %>
 
 <% if @posts %>
 	<% @posts.each do |post| %>
 		<div class="posts">
 			<h3><%= post.user.first_name %> <%= post.user.last_name %> - <%= post.created_at.strftime("%B %d, %Y") %></h3>
-			<p><%= post.message %></p>
+			<p><%= post.content %></p>
 			<% if @comments %>
 				<% @comments.each do |comment| %>
 					<% if comment.post_id == post.id %>
