@@ -40,3 +40,12 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin]
 
 # Devise for login and logout
 gem 'devise'
+
+# Use rails-footnotes for development
+gem 'rails-footnotes', '>= 4.0.0', '<5'
+
+# Use Hirb for nice display of database queries in console
+gem 'hirb'
+
+# Use Simpleform to easily create forms
+gem 'simple_form'
